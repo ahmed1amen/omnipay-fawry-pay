@@ -1,0 +1,20 @@
+{
+    "name": "ahmed1amen/omnipay-fawry-pay",
+    "description": "Fawry Pay Integration",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ahmed Amen",
+            "email": "ahmed1amen.g@gmail.com"
+        }
+    ],
+    "require": {
+        "omnipay/common": "^3"
+
+    },
+
+    "require-dev" : {
+        "omnipay/tests": "^3"
+    }
+}
