@@ -25,11 +25,12 @@ class Response extends AbstractResponse implements RedirectResponseInterface
      */
     public function isSuccessful()
     {
-        if ($this->isRedirect()) {
-            return false;
-        }
+      if ($this->data['statusCode'] !=200) {
+          return isset($this->data);
+      }
+      return $this->data;
 
-        return !isset($this->data['error']);
+
     }
 
 }
