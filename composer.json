@@ -9,11 +9,6 @@
             "email": "ahmed1amen.g@gmail.com"
         }
     ],
-    "extra": {
-        "branch-alias": {
-            "dev-master": "master"
-        }
-    },
     "require": {
         "omnipay/common": "^3",
       "ext-json": "*"
