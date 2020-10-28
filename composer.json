@@ -9,6 +9,11 @@
             "email": "ahmed1amen.g@gmail.com"
         }
     ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "dev-master"
+        }
+    },
     "require": {
         "omnipay/common": "^3",
       "ext-json": "*"
@@ -16,6 +21,7 @@
     "autoload": {
         "psr-4": { "Omnipay\\FawryPay\\" : "src/" }
     },
+    "prefer-stable": true,
     "require-dev" : {
         "omnipay/tests": "^3",
       "ext-json": "*",
