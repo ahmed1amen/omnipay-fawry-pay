@@ -10,9 +10,10 @@ use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 abstract class AbstractRequest extends BaseAbstractRequest
 {
+
+
     const LIVE_ENDPOINT = 'https://www.atfawry.com';
     const TEST_ENDPOINT = 'https://atfawry.fawrystaging.com';
-
 
 
 
@@ -26,7 +27,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
         return ($this->getTestMode() === false ? self::LIVE_ENDPOINT : self::TEST_ENDPOINT);
     }
 
-    abstract public function getEndpoint();
 
     /**
      * Get HTTP Method.
@@ -41,6 +41,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
 
+
     /**
      * {@inheritdoc}
      */
@@ -48,7 +49,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
     {
         $headers = array_merge(
             $this->getHeaders()
-           
+
         );
 
         $httpResponse = $this->httpClient->request(
@@ -61,6 +62,9 @@ abstract class AbstractRequest extends BaseAbstractRequest
 
         return $this->createResponse($httpResponse->getBody()->getContents(), $httpResponse->getHeaders());
     }
+
+
+
 
     protected function createResponse($data, $headers = [])
     {

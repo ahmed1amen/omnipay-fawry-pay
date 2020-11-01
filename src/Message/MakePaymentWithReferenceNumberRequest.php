@@ -2,8 +2,6 @@
 
 namespace Omnipay\FawryPay\Message;
 
-
-use Omnipay\BlueSnap\Constants;
 use Omnipay\Common\Http\ClientInterface;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
@@ -11,19 +9,17 @@ class MakePaymentWithReferenceNumberRequest extends AbstractRequest
 {
 
 
+
     public function getData()
     {
 
         $this->setTransactionId(hexdec(uniqid()));
-
         $merchantCode = $this->configuration['merchantCode'];  // required	The merchant code provided by FawryPay team during the account setup.
         $merchantRefNum = $this->getTransactionId();   // required Unique Order ID
         $merchant_cust_prof_id = '';     //  optional	The unique customer profile ID in merchant system. This can be the user ID.
         $payment_method = $this->getPaymentMethod();
         $merchant_sec_key = $this->configuration['merchant_sec_key'];
-
         $data = [
-
             "merchantCode" => $merchantCode,
             "customerName" => $this->getCustomerName(),
             "customerMobile" => $this->getCustomerMobile(),

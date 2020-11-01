@@ -10,10 +10,8 @@ use Omnipay\Common\Message\RequestInterface;
  * @method \Omnipay\Common\Message\RequestInterface authorize(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface completeAuthorize(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface capture(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface purchase(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface completePurchase(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface refund(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface fetchTransaction(array $options = [])
  * @method \Omnipay\Common\Message\RequestInterface void(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface createCard(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface updateCard(array $options = array())
@@ -77,7 +75,7 @@ class Gateway extends AbstractGateway
      * @link https://developer.fawrystaging.com/docs/server-apis/create-payment-refno-apis
      * @param array $parameters
      */
-    public function makePaymentWithReferenceNumber(array $parameters = array())
+    public function purchase(array $parameters = array())
     {
         $createRequest = $this->createRequest('\Omnipay\FawryPay\Message\MakePaymentWithReferenceNumberRequest', $parameters);
         $createRequest->configuration= $this->getParameters();
@@ -85,8 +83,25 @@ class Gateway extends AbstractGateway
 
     }
 
-
-    public function __call($name, $arguments)
+    /**
+     * Get Payment Status
+     * @link https://developer.fawrystaging.com/docs/server-apis/payment-notifications/get-payment-status
+     * @param array $parameters
+     */
+    public function fetchTransaction(array $parameters = array())
     {
-     }
+        $createRequest = $this->createRequest('\Omnipay\FawryPay\Message\FetchTransactionRequest', $parameters);
+        $createRequest->configuration= $this->getParameters();
+        return $createRequest;
+
+    }
+
+
+
+
+
+
+
+
+
 }
