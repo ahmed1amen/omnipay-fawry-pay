@@ -47,6 +47,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
      */
     public function sendData($data)
     {
+
         $headers = array_merge(
             $this->getHeaders()
 
@@ -58,6 +59,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
             $headers,
             json_encode($data,true)
         );
+
 
 
         return $this->createResponse($httpResponse->getBody()->getContents(), $httpResponse->getHeaders());
@@ -82,5 +84,51 @@ abstract class AbstractRequest extends BaseAbstractRequest
 
         return $headers;
     }
+
+
+
+
+
+    public function getPaymentMethod()
+    {
+        return $this->getParameter('paymentMethod');
+    }
+
+    public function setPaymentMethod($value)
+    {
+        return $this->setParameter('paymentMethod', $value);
+    }
+    public function getMerchantSecKey()
+    {
+        return $this->getParameter('merchantSecKey');
+    }
+
+    public function setMerchantSecKey($value)
+    {
+        return $this->setParameter('merchantSecKey', $value);
+    }
+
+    public function getMerchantCode()
+    {
+        return $this->getParameter('merchantCode');
+    }
+
+    public function setMerchantCode($value)
+    {
+        return $this->setParameter('merchantCode', $value);
+    }
+
+
+
+    public function getLanguage()
+    {
+        return $this->getParameter('language');
+    }
+
+    public function setLanguage($value)
+    {
+        return $this->setParameter('language', $value);
+    }
+
 
 }

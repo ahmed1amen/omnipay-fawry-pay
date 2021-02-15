@@ -11,9 +11,9 @@ class FetchTransactionRequest extends AbstractRequest
     public function getData()
     {
 
-        $merchantCode = $this->configuration['merchantCode'];  // required	The merchant code provided by FawryPay team during the account setup.
+        $merchantCode = $this->getMerchantCode();  // required	The merchant code provided by FawryPay team during the account setup.
         $merchantRefNum = $this->getTransactionReference();   // required Unique Order ID
-        $merchant_sec_key = $this->configuration['merchant_sec_key'];
+        $merchant_sec_key = $this->getMerchantSecKey();
         $data = [
             "merchantCode" => $merchantCode,
             "merchantRefNumber" => $merchantRefNum,

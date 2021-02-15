@@ -7,31 +7,26 @@ use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 class MakePaymentWithReferenceNumberRequest extends AbstractRequest
 {
-
-
-
     public function getData()
     {
 
-        $this->setTransactionId(hexdec(uniqid()));
-        $merchantCode = $this->configuration['merchantCode'];  // required	The merchant code provided by FawryPay team during the account setup.
-        $merchantRefNum = $this->getTransactionId();   // required Unique Order ID
+        $merchantCode = $this->getMerchantCode();  // required	The merchant code provided by FawryPay team during the account setup.
+        $merchantRefNum = $this->getTransactionReference();   // required Unique Order ID
         $merchant_cust_prof_id = '';     //  optional	The unique customer profile ID in merchant system. This can be the user ID.
         $payment_method = $this->getPaymentMethod();
-        $merchant_sec_key = $this->configuration['merchant_sec_key'];
+        $merchant_sec_key = $this->getMerchantSecKey();
         $data = [
             "merchantCode" => $merchantCode,
             "customerName" => $this->getCustomerName(),
             "customerMobile" => $this->getCustomerMobile(),
             "customerEmail" => $this->getCustomerEmail(),
             "customerProfileId" => "",
-            "merchantRefNum" => $this->getTransactionId(),
+            "merchantRefNum" => $merchantRefNum,
             "amount" => $this->getAmount(),
-            "paymentExpiry" => "1631138400000",
+            "paymentExpiry" => $this->getPaymentExpiry(),
             "currencyCode" => "EGP",
-            "language" => "en-gb",
-            "chargeItems" =>
-                $this->getChargeItems(),
+            "language" => $this->getLanguage(),
+            "chargeItems" => $this->getChargeItems(),
             "signature" => "",
             "paymentMethod" => $payment_method,
             "description" => "Example Description"
@@ -41,6 +36,17 @@ class MakePaymentWithReferenceNumberRequest extends AbstractRequest
 
 
         return $data;
+    }
+
+
+    public function getPaymentExpiry()
+    {
+        return $this->getParameter('paymentExpiry');
+    }
+
+    public function setPaymentExpiry($value)
+    {
+        return $this->setParameter('paymentExpiry', $value);
     }
 
     public function getChargeItems()

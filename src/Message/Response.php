@@ -1,5 +1,7 @@
 <?php
+
 namespace Omnipay\FawryPay\Message;
+
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
@@ -18,19 +20,15 @@ class Response extends AbstractResponse implements RedirectResponseInterface
         $this->headers = $headers;
     }
 
+
     /**
-     * Is the transaction successful?
+     * Is the Request successful ?
      *
-     * @return bool
+     * @return Response | false
      */
     public function isSuccessful()
     {
-      if ($this->data['statusCode'] !=200) {
-          return isset($this->data);
-      }
-      return $this->data;
-
-
+        return ($this->data['statusCode'] != 200) ? $this :false ;
     }
 
 }

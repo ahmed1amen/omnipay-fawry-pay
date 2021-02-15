@@ -34,29 +34,30 @@ class Gateway extends AbstractGateway
     {
         return array(
             'merchantCode' => '',
-            'merchant_sec_key' => '',
-            'payment_method' => '',
+            'merchantSecKey' => '',
+            'paymentMethod' => '',
+            'language' => 'en-gb',
             'testMode' => false,
         );
     }
 
-    public function getPayment_method()
+    public function getPaymentMethod()
     {
-        return $this->getParameter('payment_method');
+        return $this->getParameter('paymentMethod');
     }
 
-    public function setPayment_method($value)
+    public function setPaymentMethod($value)
     {
-        return $this->setParameter('payment_method', $value);
+        return $this->setParameter('paymentMethod', $value);
     }
-    public function getMerchant_sec_key()
+    public function getMerchantSecKey()
     {
-        return $this->getParameter('merchant_sec_key');
+        return $this->getParameter('merchantSecKey');
     }
 
-    public function setMerchant_sec_key($value)
+    public function setMerchantSecKey($value)
     {
-        return $this->setParameter('merchant_sec_key', $value);
+        return $this->setParameter('merchantSecKey', $value);
     }
 
     public function getMerchantCode()
@@ -69,6 +70,16 @@ class Gateway extends AbstractGateway
         return $this->setParameter('merchantCode', $value);
     }
 
+    public function getLanguage()
+    {
+        return $this->getParameter('language');
+    }
+
+    public function setLanguage($value)
+    {
+        return $this->setParameter('language', $value);
+    }
+
 
     /**
      * Create Payment Requests Using FawryPay Reference Number
@@ -78,7 +89,6 @@ class Gateway extends AbstractGateway
     public function purchase(array $parameters = array())
     {
         $createRequest = $this->createRequest('\Omnipay\FawryPay\Message\MakePaymentWithReferenceNumberRequest', $parameters);
-        $createRequest->configuration= $this->getParameters();
         return $createRequest;
 
     }
