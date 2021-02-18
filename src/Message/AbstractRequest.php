@@ -5,6 +5,7 @@ namespace Omnipay\FawryPay\Message;
 use Exception;
 use Omnipay\Common\Http\ClientInterface;
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
+use Omnipay\Common\Message\ResponseInterface;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 
@@ -42,8 +43,12 @@ abstract class AbstractRequest extends BaseAbstractRequest
 
 
 
+
     /**
-     * {@inheritdoc}
+     * Send the request with specified data
+     *
+     * @param  mixed             $data The data to send
+     * @return ResponseInterface
      */
     public function sendData($data)
     {
@@ -94,6 +99,11 @@ abstract class AbstractRequest extends BaseAbstractRequest
         return $this->getParameter('paymentMethod');
     }
 
+
+    /**
+     * @param  string $value
+     * @return $this
+     */
     public function setPaymentMethod($value)
     {
         return $this->setParameter('paymentMethod', $value);
@@ -103,6 +113,10 @@ abstract class AbstractRequest extends BaseAbstractRequest
         return $this->getParameter('merchantSecKey');
     }
 
+    /**
+     * @param  string $value
+     * @return $this
+     */
     public function setMerchantSecKey($value)
     {
         return $this->setParameter('merchantSecKey', $value);
@@ -113,6 +127,10 @@ abstract class AbstractRequest extends BaseAbstractRequest
         return $this->getParameter('merchantCode');
     }
 
+    /**
+     * @param  string $value
+     * @return $this
+     */
     public function setMerchantCode($value)
     {
         return $this->setParameter('merchantCode', $value);
@@ -125,6 +143,10 @@ abstract class AbstractRequest extends BaseAbstractRequest
         return $this->getParameter('language');
     }
 
+    /**
+     * @param  string $value
+     * @return $this
+     */
     public function setLanguage($value)
     {
         return $this->setParameter('language', $value);
